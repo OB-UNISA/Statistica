@@ -68,10 +68,11 @@ def summary_table(modalita, freq_assoluta, freq_relativa, freq_cumulativa_assolu
     display(df)
 
 
-def grafico_a_linee(xs, ys, title=None, xlabel=None, ylabel=None, grid=False):
+def grafico_a_linee(xs, ys, title=None, xlabel=None, ylabel=None, grid=False, labels_on_points=False, line='-o'):
     fig, ax = plt.subplots()
-    ax.plot(xs, ys, '-o')
-    add_labels_on_points(xs, ys)
+    ax.plot(xs, ys, line)
+    if labels_on_points:
+        add_labels_on_points(xs, ys)
     if title:
         ax.set_title(title)
     if xlabel:
