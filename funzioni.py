@@ -62,7 +62,8 @@ def summary_table(modalita, freq_assoluta, freq_relativa, freq_cumulativa_assolu
         data_table.append([i + 1, modalita[i], freq_assoluta[i], freq_relativa[i], freq_cumulativa_assoluta[i],
                            freq_cumulativa_relativa[i]])
 
-    df = pd.DataFrame(data_table, columns=['i', 'v_i', 'f_i', 'p_i', 'F_i', 'P_i'])
+    df = pd.DataFrame(data_table, columns=[
+                      'i', 'v_i', 'f_i', 'p_i', 'F_i', 'P_i'])
     df.set_index('i', inplace=True)
     display(df)
 
