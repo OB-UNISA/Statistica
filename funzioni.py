@@ -109,7 +109,7 @@ def classi_valori_contigui(elements, ampiezza=5, grid=False, title=None, xlabel=
     max_value = max(elements)
 
     fig, ax = plt.subplots()
-    values, bins, bars = ax.hist(elements, bins=[i for i in range(min_value, max_value + ampiezza, ampiezza)],
+    values, bins, bars = ax.hist(elements, bins=list(range(min_value, max_value + ampiezza, ampiezza)),
                                  edgecolor='black', linewidth=1.5)
 
     if plot:
