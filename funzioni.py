@@ -35,8 +35,8 @@ def frequenza_cumulativa_assoluta(freq_assoluta):
 
 def frequeza_relativa(n, freq_assoluta):
     freq_relativa = []
-    for i in range(len(freq_assoluta)):
-        freq_relativa.append(freq_assoluta[i] / n)
+    for freq in freq_assoluta:
+        freq_relativa.append(freq / n)
 
     return freq_relativa
 
@@ -63,7 +63,7 @@ def summary_table(modalita, freq_assoluta, freq_relativa, freq_cumulativa_assolu
                            freq_cumulativa_relativa[i]])
 
     df = pd.DataFrame(data_table, columns=[
-                      'i', 'v_i', 'f_i', 'p_i', 'F_i', 'P_i'])
+        'i', 'v_i', 'f_i', 'p_i', 'F_i', 'P_i'])
     df.set_index('i', inplace=True)
     display(df)
 
