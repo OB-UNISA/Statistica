@@ -67,16 +67,18 @@ def summary_table(modalita, freq_assoluta, freq_relativa, freq_cumulativa_assolu
     display(df)
 
 
-def grafico_a_linee(modalita, stats, title=None, xlabel=None, ylabel=None):
+def grafico_a_linee(xs, ys, title=None, xlabel=None, ylabel=None, grid=False):
     fig, ax = plt.subplots()
-    ax.plot(modalita, stats, '-o')
-    add_labels_on_points(modalita, stats)
+    ax.plot(xs, ys, '-o')
+    add_labels_on_points(xs, ys)
     if title:
         ax.set_title(title)
     if xlabel:
         ax.set_xlabel(xlabel)
     if ylabel:
         ax.set_ylabel(ylabel)
+    if grid:
+        ax.grid()
 
     plt.show()
 
@@ -90,3 +92,42 @@ def add_labels_on_points(xs, ys):
                      textcoords="offset points",
                      xytext=(0, 7),
                      ha='center')
+
+
+def grafico_a_torta(labels, values, title=None):
+    fig, ax = plt.subplots()
+    ax.pie(values, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
+    ax.axis('equal')
+    if title:
+        ax.set_title(title)
+
+    plt.show()
+
+
+def classi_valori_contigui(elements, ampiezza=5, grid=False, title=None, xlabel=None, ylabel=None, plot=False):
+    min_value = min(elements)
+    max_value = max(elements)
+
+    fig, ax = plt.subplots()
+    values, bins, bars = ax.hist(elements, bins=[i for i in range(min_value, max_value + ampiezza, ampiezza)],
+                                 edgecolor='black', linewidth=1.5)
+
+    if plot:
+        ax.set_xticks(bins)
+        ax.bar_label(bars)
+        if grid:
+            ax.grid()
+        if title:
+            ax.set_title(title)
+        if xlabel:
+            ax.set_xlabel(xlabel)
+        if ylabel:
+            ax.set_ylabel(ylabel)
+
+        plt.show()
+
+    classi = {}
+    for i in range(len(bins) - 1):
+        classi[bins[i]] = values[i]
+
+    return classi
